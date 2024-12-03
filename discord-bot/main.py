@@ -16,9 +16,6 @@ intents.members = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 
-
-
-
 @client.event
 async def on_ready():
     print("The bot is now ready for use!")
@@ -44,13 +41,10 @@ async def on_member_join(member):
     await channel.send("Welcome")
 
 
-
 @client.event
 async def on_member_remove(member):
     channel = client.get_channel(1313505832205553676)
     await channel.send("Goodbye")
-
-
 
 
 #slash commands
@@ -60,6 +54,17 @@ async def on_member_remove(member):
 async def test(interaction: Interaction):
     await interaction.response.send_message("hello, testing slash commands")
 
+
+#using cogs
+initial_extensions = []
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        initial_extensions.append("cogs." + filename[:-3])
+
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        client.load_extension(extension)
 
 
 #token removed for security reasons, change to promptinsight discord bot token
