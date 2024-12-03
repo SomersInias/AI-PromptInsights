@@ -1,6 +1,4 @@
 #import required dependicies
-import discord
-from discord.ext import commands
 import requests
 import nextcord
 from nextcord import Interaction
@@ -11,7 +9,7 @@ import os
 #import Api keys
 from apikeys import *
 
-intents = discord.Intents.all()
+intents = nextcord.Intents.all()
 intents.members = True
 
 
@@ -58,7 +56,7 @@ async def on_member_remove(member):
 #slash commands
 
 #guilds it is for testing otherwise need to wait 1hour for discord bot update for the slash commands
-@client.slash_command(name = "test", description = "test", guild_ids=[TestServerId])
+@client.slash_command(name = "test", description = "just a testing command", guild_ids=[TestServerId])
 async def test(interaction: Interaction):
     await interaction.response.send_message("hello, testing slash commands")
 
